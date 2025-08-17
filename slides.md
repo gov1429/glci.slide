@@ -20,37 +20,40 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# open graph
-seoMeta:
-  # By default, Slidev will use ./og-image.png if it exists,
-  # or generate one from the first slide if not found.
-  ogImage: auto
-  # ogImage: https://cover.sli.dev
+defaults:
+  class: overflow-scroll
+# addons:
+#   - slidev-component-scroll
 ---
 
-# Introduction to GitLab CI
+# GitLab CI/CD Introduction
 
-<!-- ## Migrating from Jenkins to GitLab CI -->
+---
+src: ./pages/01-intro.md
+---
 
-<div class="text-3xl mt-8 text-gray-600">Step-by-Step Guide for Beginners</div>
-<div class="text-2xl mt-4">Presented by Grok</div>
+---
+src: ./pages/02-basics.md
+---
 
-```yaml
-src: ./pages/introduction.markdown
-```
+---
+src: ./pages/03-config.md
+---
 
-```yaml
-src: ./pages/basics.markdown
-```
+---
+src: ./pages/04-control.md
+---
 
-```yaml
-src: ./pages/writing-yaml.markdown
-```
+---
+src: ./pages/05-advanced.md
+---
 
-```yaml
-src: ./pages/advanced-keywords.markdown
-```
+---
+src: ./pages/06-components.md
+---
 
-```yaml
-src: ./pages/components.markdown
-```
+---
+layout: end
+---
+
+# Thank You!
