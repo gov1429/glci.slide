@@ -31,7 +31,7 @@ Sequential phases of your pipeline
 
 </div>
 
-<div v-click="3" class="text-center p-4 important-block">
+<div v-click="3" class="text-center p-4 imp-block">
 
 ## ⚡ **Jobs**
 Individual tasks within stages
@@ -83,8 +83,7 @@ graph TD
 </v-clicks>
 
 ---
-layout: default
----
+
 
 # Jobs - The Heart of CI/CD
 
@@ -152,8 +151,7 @@ graph LR
 </div>
 
 ---
-layout: default
----
+
 
 # Stages - Organizing Your Workflow
 
@@ -264,8 +262,7 @@ gantt
 </div>
 
 ---
-layout: default
----
+
 
 # Pipelines - The Complete Picture
 

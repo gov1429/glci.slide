@@ -88,8 +88,7 @@ my-node-app/
 </v-click>
 
 ---
-layout: default
----
+
 
 # Demo 1: Basic Pipeline Code
 
@@ -505,8 +504,7 @@ include:
 </v-click>
 
 ---
-layout: default
----
+
 
 # Demo 3: Component Management
 
@@ -640,8 +638,7 @@ include:
 </v-click>
 
 ---
-layout: default
----
+
 
 # Demo 4: Monitoring & Observability
 

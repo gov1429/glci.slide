@@ -94,8 +94,7 @@ include:
 </v-click>
 
 ---
-layout: default
----
+
 
 # Component Benefits & Architecture
 
@@ -180,8 +179,7 @@ node-test:
 </div>
 
 ---
-layout: default
----
+
 
 # Creating Your First Component
 
@@ -293,8 +291,7 @@ git tag v2.0.0  # Breaking changes
 </div>
 
 ---
-layout: default
----
+
 
 # Advanced Component Patterns
 
@@ -426,8 +423,7 @@ include:
 </div>
 
 ---
-layout: default
----
+
 
 # Real-world Component Examples
 
@@ -556,8 +552,7 @@ deploy-k8s:
 </div>
 
 ---
-layout: default
----
+
 
 # Component Discovery & Management
 

@@ -108,8 +108,7 @@ layout: two-cols-header
 </v-click>
 
 ---
-layout: default
----
+
 
 # Jenkins vs GitLab Mapping
 
@@ -215,8 +214,7 @@ layout: default
 </div>
 
 ---
-layout: default
----
+
 
 # Pipeline Translation Examples
 
@@ -343,8 +341,7 @@ deploy:
 </v-click>
 
 ---
-layout: default
----
+
 
 # Complex Pipeline Migration
 
@@ -482,8 +479,7 @@ deploy:
 </div>
 
 ---
-layout: default
----
+
 
 # Migration Tools & Resources
 
@@ -604,8 +600,7 @@ layout: default
 </div>
 
 ---
-layout: default
----
+
 
 # Migration Best Practices
 
@@ -746,8 +741,7 @@ Thorough validation of migrated pipelines
 </div>
 
 ---
-layout: default
----
+
 
 # Post-Migration Optimization
 

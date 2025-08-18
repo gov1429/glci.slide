@@ -90,8 +90,7 @@ workflow:
 </v-click>
 
 ---
-layout: default
----
+
 
 # Rules - The Power of Conditions
 
@@ -200,8 +199,7 @@ when: never         # Never run (skip)
 </div>
 
 ---
-layout: default
----
+
 
 # File-based Rules: changes & exists
 
@@ -326,8 +324,7 @@ docs_deploy:
 </div>
 
 ---
-layout: default
----
+
 
 # Dynamic Variables with Rules
 
@@ -449,8 +446,7 @@ deploy:
 </div>
 
 ---
-layout: default
----
+
 
 # Real-world Workflow Examples
 

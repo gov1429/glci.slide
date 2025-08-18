@@ -41,9 +41,7 @@ e2e_tests:
 
 </div>
 
-<div>
-
-<v-click at="2">
+<div v-click="2">
 
 ## Docker-in-Docker (DinD)
 
@@ -71,8 +69,6 @@ build_multi_stage:
     - docker build --target development -t app:dev .
     - docker run --rm app:dev npm test
 ```
-
-</v-click>
 
 <v-click at="3">
 

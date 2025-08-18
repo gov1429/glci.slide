@@ -111,8 +111,7 @@ deploy-job:
 </v-click>
 
 ---
-layout: default
----
+
 
 # Essential Job Keywords
 
@@ -204,8 +203,7 @@ my-job:
 </div>
 
 ---
-layout: default
----
+
 
 # Advanced Configuration Patterns
 
@@ -321,8 +319,7 @@ complex_job:
 </div>
 
 ---
-layout: default
----
+
 
 # Real-World Example: Node.js Application
 
@@ -451,8 +448,7 @@ deploy_production:
 </div>
 
 ---
-layout: default
----
+
 
 # Common Patterns & Best Practices
 

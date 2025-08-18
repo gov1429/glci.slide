@@ -114,8 +114,7 @@ Defined in .gitlab-ci.yml
 </v-click>
 
 ---
-layout: default
----
+
 
 # Variable Usage Patterns
 
@@ -235,8 +234,7 @@ deploy_production:
 </div>
 
 ---
-layout: default
----
+
 
 # Artifacts - Sharing Data Between Jobs
 
@@ -366,8 +364,7 @@ test_e2e:
 </div>
 
 ---
-layout: default
----
+
 
 # Caching - Speed Up Your Pipelines
 
@@ -484,8 +481,7 @@ test:
 </div>
 
 ---
-layout: default
----
+
 
 # Services & Docker Integration
 
@@ -592,8 +588,7 @@ build_and_push:
 </div>
 
 ---
-layout: default
----
+
 
 # Job Control & Optimization
 
