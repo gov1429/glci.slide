@@ -8,19 +8,7 @@ layout: section
 
 ---
 
-# What are CI/CD Components?
-
-## Evolution of CI/CD Configuration
-
-<v-clicks>
-
-- **Templates**: Static, limited customization
-- **Includes**: Better, but still not flexible enough
-- **Components**: Dynamic, reusable, versioned! 🎯
-
-</v-clicks>
-
-## Key Benefits
+# Key Benefits of CI/CD Components
 
 <v-clicks>
 
@@ -87,17 +75,14 @@ include:
 ```
 
 ---
-layout: default
----
 
 # Component Anatomy
 
-## Component Definition
+- **Component Definition**
 
 ```yaml
 # .gitlab-ci.yml in component project
 # Component header with spec
----
 spec:
   inputs:
     docker-image:
@@ -152,8 +137,6 @@ include:
 ```
 
 ---
-layout: default
----
 
 # Advanced Component Patterns
 
@@ -166,7 +149,6 @@ layout: default
 <v-click at="1">
 
 ```yaml
----
 spec:
   inputs:
     environment:
@@ -192,14 +174,11 @@ deploy:
 
 </div>
 
-<div>
-
-<v-click at="2">
+<div v-click at="2">
 
 ## Multi-template Components
 
 ```yaml
----
 spec:
   inputs:
     include-build:
@@ -210,21 +189,15 @@ spec:
       default: true
 ---
 # Include multiple templates conditionally
-$[[ inputs.include-build ]]:
-  include:
-    - local: templates/build.yml
-
-$[[ inputs.include-test ]]:
-  include:
-    - local: templates/test.yml
+include:
+  - local: templates/build.yml
+    rules:
+      - if: "'$[[ inputs.include-build ]]' == 'true'"
+  - local: templates/test.yml
+    rules:
+      - if: "'$[[ inputs.include-test ]]' == 'true'"
 ```
 
-</v-click>
-
 </div>
 
 </div>
-
-<!--
-TODO: is last example correct?
--->

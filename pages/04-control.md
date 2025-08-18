@@ -19,7 +19,7 @@ layout: section
 - **Global rules** that apply to entire pipeline
 - **Prevents unnecessary runs** and saves resources
 
-<v-click>
+<v-click at ="1">
 
 ### Common Workflow Patterns{.mt-2}
 
@@ -38,17 +38,17 @@ layout: section
 
 <v-click at="6">
 
-```yaml
+```yaml {*|3-4|5-6|7-8|9-10|11-}{at:7}
 workflow:
   rules:
-    # Don't run for draft commits
-    - if: $CI_COMMIT_MESSAGE =~ /-draft$/
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(uat|staging)$/
       when: never
-    # Run for pushes to main
-    - if: $CI_PIPELINE_SOURCE == "push" &&
-        $CI_COMMIT_BRANCH == "main"
-    # Run for merge requests
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_TAG || $CI_COMMIT_MESSAGE =~ /release/
+      when: never
+    # Run for merge requests (CI)
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    # CD
+    - if: $CI_COMMIT_BRANCH =~ /^(dev|develop|uat|staging|master|main)$/
     # Don't run in other cases
     - when: never
 ```
@@ -64,13 +64,16 @@ workflow:
 - [click] Only run on schedule or manual
 
 - [click] Order is matter
+- [click] Ignore uat ci
+- [click] Ignore release flow (pushing tag or release message)
+- [click] CI for every MRs
+- [click] CD for specific branches
+- [click] Not necessary
 -->
 
 ---
 
 # Rules - The Power of Conditions
-
-## Evaluation Order{.mt-6}
 
 1. **First match wins** - stops at first matching rule
 2. **Top to bottom** - order matters
@@ -91,8 +94,12 @@ job:
         - Dockerfile
 ```
 
----
-layout: default
+<!--
+**Evaluation Order**
+
+`rules` can be used in some keywords but have some different options, in this example, we focus on `job`.
+-->
+
 ---
 
 # File-based Rules: `changes`
@@ -101,11 +108,9 @@ layout: default
 
 <div>
 
-## Changes Rules
+- **Changes Rules**
 
-<v-click>
-
-```yaml
+```yaml {*|2-8|10-|5-8,13-}
 # Run when specific files change
 build_frontend:
   script: npm run build
@@ -124,17 +129,13 @@ build_backend:
         - "backend/Dockerfile"
 ```
 
-</v-click>
-
 </div>
 
-<div>
+<div v-click="4">
 
-<v-click>
+- **Patterns & Wildcards**
 
-## Patterns & Wildcards
-
-```yaml
+```yaml {*|4-7,12-14|12-}{at:5}
 # Glob patterns
 test_changes:
   rules:
@@ -152,25 +153,29 @@ docs_deploy:
       if: $CI_COMMIT_BRANCH == "main"
 ```
 
-</v-click>
-
 </div>
 
 </div>
 
----
-layout: default
+<!--
+- [click] A frontend project
+- [click] A backend project
+- [click] Create job only if these files changed
+
+- [click:2] Use glob
+- [click] Combine with `if`
+-->
+
 ---
 
 # Dynamic Variables with Rules
 
-## Rule-specific Variables
+- **Rule-specific Variables**
 
-```yaml
+```yaml {*|2-5|7-10,2-3|11-14,2-3|15-,2-3}
 deploy_app:
   script:
     - echo "Deploying to $DEPLOY_ENV"
-    - ./deploy.sh $DEPLOY_ENV
   variables:
     DEPLOY_ENV: "development" # Default
   rules:
@@ -187,5 +192,10 @@ deploy_app:
 ```
 
 <!--
-TODO: workflow vars?
+Dynamic variables are available in `workflow` keyword.
+
+- [click] Use `DEPLOY_ENV` variable
+- [click] `DEPLOY_ENV` is 'production'
+- [click] `DEPLOY_ENV` is 'staging'
+- [click] `DEPLOY_ENV` is 'development'; without 'always', only branches, 'main' and 'staging' create the job
 -->

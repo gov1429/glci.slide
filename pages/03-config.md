@@ -23,7 +23,7 @@ stages:
 build-job:
   stage: build
   script:
-    - echo "Building the app..."
+    - '[[ "$ENV" == prod ]] && echo "Prod app..."'
 
 test-job:
   stage: test
@@ -54,12 +54,10 @@ TODO: line feed
 -->
 
 ---
-layout: default
----
 
 # Essential Job Keywords
 
-```yaml {*|2|4-5|9-10|11-14|15-16|17|18|19-20|21-27|28-}{maxHeight:'85%'}
+```yaml {*|2|4-8|9-10|11-16|17|18|19-20|21-27|28-}{maxHeight:'85%'}
 my-job:
   image: node:18 # Docker image
   stage: build # Stage assignment
@@ -70,10 +68,10 @@ my-job:
     - npm run build
   after_script: # Cleanup commands
     - echo "Build finished"
-  only: # When to run (deprecated)
-    - main
-  except: # When NOT to run (deprecated)
-    - develop
+  # only: # When to run (deprecated)
+  #   - main
+  # except: # When NOT to run (deprecated)
+  #   - develop
   rules: # Modern conditional logic
     - if: $CI_COMMIT_BRANCH == "main"
   when: manual # Execution trigger
@@ -97,8 +95,7 @@ my-job:
 - [click] Are concatenated with `script`
 - [click] Execute in a new shell, different context
 
-- [click] Do not use; usually from old tutorials
-- [click] `if` statement is `true`, add the job to the pipeline
+- [click] Do not use; usually from old tutorials; `if` statement is `true`, add the job to the pipeline
 - [click] when to trigger the job
 
 - [click:2] Instance, group, project, project, etc.
@@ -219,8 +216,71 @@ deploy_production:
 ````
 
 <!--
-TODO: !reference tag.
+Can only refer in same file.
 
 - [click] `&`, an anchor
 - [click:2] `*`, an alias; `<<`: map merging
+-->
+
+---
+
+# Advanced Configuration Patterns (cont.)
+
+- **Templates with `!reference` Tags**
+
+````md magic-move
+```yaml {*|1-4|6-|2,7-8,16|10-12,19}
+# configs.yml
+.setup:
+  script:
+    - echo creating environment
+---
+# .gitlab-ci.yml
+include:
+  - local: configs.yml
+
+.teardown:
+  after_script:
+    - echo deleting environment
+
+test:
+  script:
+    - !reference [.setup, script]
+    - echo running my own command
+  after_script:
+    - !reference [.teardown, after_script]
+```
+
+```yaml {4,16,12,19}
+# configs.yml
+.setup:
+  script:
+    - echo creating environment
+---
+# .gitlab-ci.yml
+include:
+  - local: configs.yml
+
+.teardown:
+  after_script:
+    - echo deleting environment
+
+test:
+  script:
+    - - echo creating environment
+    - echo running my own command
+  after_script:
+    - - echo deleting environment
+```
+````
+
+<!--
+Can only refer in different files.
+
+- [click] Assume we have shared config (will talk later)
+- [click] Our main ci config
+- [click] Load it and refer to a keyword
+- [click] We can also refer to hidden job in same file
+
+[click] The keywords will be referred.
 -->

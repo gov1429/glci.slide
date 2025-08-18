@@ -51,7 +51,7 @@ Group jobs that run in parallel or sequence
 
 </div>
 
-<div v-click="3" class="text-center p-4 important-block">
+<div v-click="3" class="text-center p-4 imp-block">
 
 ### **Jobs**
 
@@ -128,8 +128,6 @@ style D fill:#f3e5f5
 </v-click>
 
 <!--
-TODO: before_script and after_script
-
 [click:4] Think of jobs like functions in programming - they have a specific purpose and can be reused
 
 - [click:2] Job name
@@ -137,6 +135,8 @@ TODO: before_script and after_script
 - [click] Commands to run
 - [click] When to run
 - [click] What to save
+
+[click] Context between `before_script` and `after_script`
 -->
 
 ---
@@ -171,15 +171,14 @@ stages:
   - integration-test
   - staging-deploy
   - production-deploy
+  # etc.
 ```
 
 </v-click>
 
 </div>
 
-<div>
-
-<v-click at="3">
+<div v-click="3">
 
 ## Stage Behavior
 
@@ -211,8 +210,6 @@ stages:
 
 </div>
 
-</v-click>
-
 </div>
 
 </div>
@@ -234,12 +231,10 @@ stages:
 -->
 
 ---
-class: overflow-unset
----
 
 ## Visual Pipeline Example
 
-<div class="overflow-scroll flex h-full items-center">
+<div class="flex h-full items-center">
 
 ```mermaid {scale: 1}
 gantt
@@ -272,12 +267,13 @@ gantt
 
 ## Pipeline Triggers{.mb-4}
 
-<v-click>
-
 - **Push to branch**
 - **Merge requests**
-- **Scheduled runs**
+
+<v-click hide at="2">
+
 - **Manual execution**
+- **Scheduled runs**
 - **API calls**
 - **External webhooks**
 
@@ -287,17 +283,24 @@ gantt
 
 <div>
 
-## Pipeline Triggers{.mb-4}
-
-<v-click>
+## Pipeline Types{.mb-4}
 
 - **Branch Pipeline**: Runs on every push
 - **Merge Request Pipeline**: Runs on MR creation
-- **Tag Pipeline**: Runs on tag creation
+
+<v-click hide at="2">
+
 - **Scheduled Pipeline**: Runs on cron schedule
+- **Tag Pipeline**: Runs on tag creation
 
 </v-click>
 
 </div>
 
 </div>
+
+<!--
+[click] When to trigger a pipeline
+
+[click] What type a pipeline is
+-->

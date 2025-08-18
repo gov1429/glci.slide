@@ -19,9 +19,11 @@ layout: two-cols-header
 ## Types of Variables
 
 - **Predefined**: Provided by GitLab automatically
-  - E.g., `$CI_PROJECT_NAME`, `$CI_PROJECT_NAMESPACE`, etc.
+  - `$CI_PROJECT_NAME`, `$CI_PROJECT_NAMESPACE`, etc.
 - **Custom**: Defined by you at different levels
+  - Group, project, etc.
 - **File-based**: Loaded from external files
+  - `artifacts:reports:dotenv`
 - **Protected**: Only available on protected branches
 - **Masked**: Hidden in job logs
 
@@ -42,23 +44,20 @@ layout: two-cols-header
 </div>
 
 <!--
-TODO: `artifacts:report:dotenv`.
-
 [click] Higher priority overrides lower
+
+TODO: 4. Manual overwrites runner?
 -->
 
----
-layout: default
 ---
 
 # Variable Usage Patterns
 
-```yaml
+```yaml {*|3,17|5-6|4,10-14}
 # Global variables for entire pipeline
 variables:
   NODE_VERSION: "18"
   DOCKER_REGISTRY: "registry.gitlab.com"
-  APP_NAME: "my-awesome-app"
   # Dynamic Variables
   APP_VERSION: $CI_COMMIT_SHORT_SHA
 
@@ -76,21 +75,23 @@ test:
     - npm test
 ```
 
----
-layout: default
+<!--
+- [click] Expand by runner
+- [click] Expand by GitLab then runner
+- [click] Use global and job level vars
+-->
+
 ---
 
 # Artifacts - Sharing Data Between Jobs
 
-```yaml
+```yaml {*|2-6|8-9|10-11|10,12-18|12,19}
 build:
   script:
     - npm run build
   artifacts:
     paths:
       - dist/ # Built application
-    expire_in: 1 week # Auto-cleanup
-    when: always # Save even on failure
 
 test:
   needs: [build]
@@ -101,14 +102,13 @@ test:
     reports:
       junit: test-results.xml
       coverage: coverage/cobertura.xml
-      codequality: quality-report.json
     paths:
       - test-results/
   coverage: '/Coverage: \d+\.\d+%/'
 ```
 
 ---
-layout: default
+hide: true
 ---
 
 # Caching - Speed Up Your Pipelines
@@ -117,7 +117,6 @@ layout: default
 # Global cache configuration
 variables:
   CACHE_VERSION: v1
-
 
 build:
   cache:
@@ -129,9 +128,6 @@ build:
   script:
     - npm ci --cache .npm # Use cache location
     - npm run build
-
-
-# Smart
 
 # Cache based on lock file changes
 cache:
@@ -155,8 +151,6 @@ TODO: something is wrong.
 -->
 
 ---
-layout: default
----
 
 # Job Control & Optimization
 
@@ -174,7 +168,8 @@ build_backend:
 
 test_unit:
   stage: test
-  needs: [build_backend]
+  needs:
+    - build_backend
   script: ./test-unit.sh
 
 test_integration:
@@ -184,8 +179,6 @@ test_integration:
 
 deploy:
   stage: deploy
-  needs:
-    - test_unit
-    - test_integration
+  needs: [test_unit, test_integration]
   script: ./deploy.sh
 ```

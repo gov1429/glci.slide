@@ -10,7 +10,7 @@ export default defineConfig({
 
     "info-block":
       "border-2 border-blue-400 rounded-lg bg-blue-50 dark:bg-blue-900/20",
-    "important-block":
+    "imp-block":
       "border-2 border-purple-400 rounded-lg bg-purple-50 dark:bg-purple-900/20",
     "tip-block":
       "border-2 border-green-400 rounded-lg bg-green-50 dark:bg-green-900/20",

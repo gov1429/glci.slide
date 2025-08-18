@@ -5,12 +5,14 @@ theme: seriph
 # # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # # some information about your slides (markdown enabled)
-# title: Welcome to Slidev
+title: "GitLab CI/CD Introduction"
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## GitLab CI/CD Introduction
 
-  Learn more at [Sli.dev](https://sli.dev)
+  A comprehensive guide for migrating from Jenkins to GitLab CI/CD
+
+  Learn fundamentals, advanced concepts, and CI/CD Components
+author: Yen Lee
 # # apply unocss classes to the current slide
 # class: text-center
 # https://sli.dev/features/drawing
@@ -22,8 +24,6 @@ transition: slide-left
 mdc: true
 defaults:
   class: overflow-scroll
-# addons:
-#   - slidev-component-scroll
 ---
 
 # GitLab CI/CD Introduction
